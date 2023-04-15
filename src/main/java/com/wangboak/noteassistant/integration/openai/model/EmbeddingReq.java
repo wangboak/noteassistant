@@ -1,11 +1,8 @@
-package com.wangboak.noteassistant.integration.openai.dto;
+package com.wangboak.noteassistant.integration.openai.model;
 
 import lombok.Data;
 
 /**
- *
- * @author: wangbo
- * @date: 2023-04-15 18:39
  * @
  **/
 @Data
