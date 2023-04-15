@@ -1,0 +1,36 @@
+server:
+  servlet:
+    context-path: /api/
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+spring:
+  application:
+    name: noteassistant
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  profiles:
+    active: local
+  task:
+    scheduling:
+      pool:
+        size: 10
+
+OpenAI:
+  apikey:
+
+# feign相关配置
+feign:
+  client:
+    # 配置
+    config:
+      # feign.Request.Options.Options()
+      default:
+        # 控制日志Level，默认：null即NONE
+        # NONE 没有日志
+        # BASIC 只记录请求方法和URL以及响应状态码和执行时间
+        # HEADERS 记录基本信息以及请求和响应头
+        # FULL 记录请求和响应的头、正文和元数据
+        logger-level: FULL
