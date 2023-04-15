@@ -1,7 +1,5 @@
 package com.wangboak.noteassistant.web;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,10 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wangboak.noteassistant.integration.openai.OpenAIClient;
-import com.wangboak.noteassistant.integration.openai.OpenAIClientV2;
 import com.wangboak.noteassistant.integration.openai.dto.EmbeddingReq;
 import com.wangboak.noteassistant.integration.openai.dto.EmbeddingRes;
-import com.wangboak.noteassistant.util.JsonUtil;
 import com.wangboak.noteassistant.web.dto.TopicDTO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,19 +29,13 @@ public class DataController {
     @Resource
     OpenAIClient openAIClient;
 
-    @Resource
-    OpenAIClientV2 openAIClientv2;
-
     @PostMapping("/set")
-    public String putData(@RequestBody TopicDTO dto) throws IOException {
-
+    public EmbeddingRes putDataV2(@RequestBody TopicDTO dto) {
         EmbeddingReq req = new EmbeddingReq();
         req.setInput(dto.getContent());
-        EmbeddingRes embeddings = openAIClientv2.createEmbedding(req);
-
-        log.info("response: {}", embeddings);
-
-        return JsonUtil.toJson(embeddings);
+        EmbeddingRes embedding = openAIClient.createEmbedding(req);
+        log.info("response: {}", embedding);
+        return embedding;
     }
 
 

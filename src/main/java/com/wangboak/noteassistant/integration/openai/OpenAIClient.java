@@ -13,11 +13,9 @@ import com.wangboak.noteassistant.integration.openai.dto.EmbeddingRes;
  * @date: 2023-04-15 18:36
  * @
  **/
-@FeignClient(name = "OpenAI-service", url = "https://api.openai.com")
+@FeignClient(name = "OPENAI-CLIENT", url = "https://api.openai.com")
 public interface OpenAIClient {
 
-    @PostMapping(value = "/v1/embeddings", headers = {"Content-Type: application/json", "Authorization: Bearer "})
-    String createEmbeddings(@RequestBody EmbeddingReq req);
-
-
+    @PostMapping(value = "/v1/embeddings", headers = {"Content-Type=application/json;charset=UTF-8", "Authorization=Bearer ${OpenAI.apikey}"})
+    EmbeddingRes createEmbedding(@RequestBody EmbeddingReq req);
 }
