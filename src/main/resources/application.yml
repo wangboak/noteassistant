@@ -18,9 +18,6 @@ spring:
       pool:
         size: 10
 
-OpenAI:
-  apikey:
-
 # feign相关配置
 feign:
   client:
