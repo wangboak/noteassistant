@@ -1,3 +1,9 @@
+spring:
+  redis:
+    host: 10.0.0.92
+    port: 6379
+    database: 0 # 指定redis的分库（共16个0到15）
+
 #OpenAI 配置
 OpenAI:
-  apikey:  #your apikey
+  apikey: {your-openai-apikey} #your apikey
