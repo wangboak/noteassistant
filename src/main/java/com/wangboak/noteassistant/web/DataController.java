@@ -55,7 +55,7 @@ public class DataController {
     @GetMapping("/search")
     public List<String> search(String text) {
         List<Float> embedding = openAIService.embedding(text);
-        List<Long> ids = milvusService.search(embedding);
+        List<Long> ids = milvusService.search(embedding, 3);
         List<String> result = topicService.findContentByIds(ids);
         return result;
     }
@@ -63,7 +63,7 @@ public class DataController {
     @GetMapping("/answer")
     public AnswerDTO answer(String question) {
         List<Float> embedding = openAIService.embedding(question);
-        List<Long> ids = milvusService.search(embedding);
+        List<Long> ids = milvusService.search(embedding, 3);
         List<String> result = topicService.findContentByIds(ids);
 
         ChatMessageUtil chatMessageUtil = ChatMessageUtil.builder()
